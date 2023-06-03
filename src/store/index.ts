@@ -3,26 +3,26 @@ import Vue from "vue";
 import Vuex, {StoreOptions} from "vuex"
 Vue.use(Vuex);
 
-import { Form } from "types"
+import {PokemonType} from "types";
+
 export interface RootState {
-    forms: Form[] | [];
+    pokemons: PokemonType[] | [];
 }
 
 const store: StoreOptions<RootState> = {
     state: {
-        forms: [],
+        pokemons: [],
     },
     actions: {
-        actionForm(context: any, forms: Form[]) {
+        actionPokemons(context: any, pokemons: PokemonType[]) {
             console.log('action')
-            context.commit('mutateForm', forms)
+            context.commit('mutatePokemons', pokemons)
         }
     },
     mutations: {
-        mutateForm(state, forms: Form[]) {
-            console.log('mutation')
-            state.forms = forms;
-            console.log(state.forms)
+        mutatePokemons(state, pokemons: PokemonType[]) {
+            state.pokemons = pokemons;
+            console.log(state.pokemons)
         },
     }
 }

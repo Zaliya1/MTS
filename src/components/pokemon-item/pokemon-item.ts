@@ -1,12 +1,8 @@
 import {Component, Vue, Prop} from "vue-property-decorator";
 
-export type Pokemon = {
-    name: string;
-    url: string;
-    id: number;
-}
+import {PokemonType} from "types";
 
 @Component
 export default class PokemonItem extends Vue {
-    @Prop({type: Object, required: true}) pokemon: Pokemon;
+    @Prop({type: Object, required: true}) pokemon: PokemonType;
 }
