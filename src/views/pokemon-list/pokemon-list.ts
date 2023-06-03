@@ -1,19 +1,28 @@
 import {Component, Vue} from "vue-property-decorator";
 import PokemonItem from "@/components/pokemon-item/pokemon-item.vue";
 import axios from "axios";
+import {BListGroup, BListGroupItem, BPagination, BFormSelect} from "bootstrap-vue";
 
 import { Pokemon } from "@/components/pokemon-item/pokemon-item";
 
 @Component({
     components: {
         PokemonItem,
+        BListGroup,
+        BListGroupItem,
+        BPagination,
+        BFormSelect,
     }
 })
 export default class PokemonList extends Vue {
     pokemonList: Pokemon[] | [] = [];
-    limit: Number = 5;
     error: string;
     isLoading: boolean = true;
+    paging = {
+        current: 1,
+        rows: 10,
+        limit: 10,
+    }
 
     mounted() {
         this.getPokemons()
@@ -21,7 +30,7 @@ export default class PokemonList extends Vue {
 
     getPokemons():void {
         this.isLoading = true;
-        axios.get(`https://pokeapi.co/api/v2/pokemon?limit=${this.limit}`)
+        axios.get(`https://pokeapi.co/api/v2/pokemon`)
             .then((res) => {
                 // this.pokemonList = res.data.results;
                 this.pokemonList = res.data.results.map((i: any) => {
@@ -38,5 +47,9 @@ export default class PokemonList extends Vue {
 
     handleClick(id: number):void {
         this.$router.push(`pokemon/${id}`)
+    }
+
+    get slicePokemons() {
+        return this.pokemonList.slice(this.paging.current, this.paging.current + this.paging.limit)
     }
 }

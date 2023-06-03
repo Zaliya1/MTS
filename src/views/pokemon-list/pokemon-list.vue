@@ -1,23 +1,25 @@
 <template>
   <div class="pokemon-list">
-    pokemon-list
+    <h1>Покемоны</h1>
+    <b-list-group class="pokemon-list__group">
+      <pokemon-item
+          v-for="pokemon in slicePokemons"
+          :key="pokemon.name"
+          :pokemon="pokemon"
+          @click="handleClick"
+      />
+    </b-list-group>
 
-  <ul class="pokemons">
-<!--    <router-link-->
-<!--        v-for="pokemon in pokemonList"-->
-<!--        :key="pokemon.name"-->
-<!--        :to="`pokemon/${pokemon.name}`">-->
-<!--      <pokemon-item-->
-<!--          :pokemon="pokemon"-->
-<!--      />-->
-<!--    </router-link>-->
-    <pokemon-item
-        v-for="pokemon in pokemonList"
-        :key="pokemon.name"
-        :pokemon="pokemon"
-        @click="handleClick"
-    />
-  </ul>
+    <div class="pokemon-list__pagination">
+      <b-pagination
+          v-model="paging.current"
+          :per-page="paging.limit"
+          :total-rows="pokemonList.length"
+          size="lg"
+      />
+      <b-form-select v-model="paging.limit" :options="[5, 10, 20]" class="select" />
+    </div>
+
   </div>
 </template>
 

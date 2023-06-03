@@ -1,0 +1,12 @@
+.pokemon-list .pokemon-list__group {
+    margin-bottom: 10px;
+}
+.pokemon-list__pagination {
+    display: flex;
+    justify-content: space-between;
+}
+.select {
+    width: 50px;
+    margin-bottom: 16px;
+    border-radius: 5px;
+}

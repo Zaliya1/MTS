@@ -9,9 +9,4 @@ export type Pokemon = {
 @Component
 export default class PokemonItem extends Vue {
     @Prop({type: Object, required: true}) pokemon: Pokemon;
-
-    // mounted() {
-    //     let a = this.pokemon.url.split('/')
-    //     console.log(a)
-    // }
 }

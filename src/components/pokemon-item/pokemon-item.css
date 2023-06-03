@@ -1,5 +1,16 @@
 .pokemon-item {
-    width: 20%;
-    background-color: #fafafa;
+    background-color: #D5D7E1;
     min-height: 100px;
+    font-size: 25px;
+    border-color: #fafafa;
+    transition: .3s all ease;
+    cursor: pointer;
+    color: #747C8C;
+}
+.pokemon-item:hover {
+    background-color: #BFC4CD;
+    color: #171C25;
+}
+.pokemon-item:active, .pokemon-item:focus {
+    background-color: #D0D2DB;
 }
