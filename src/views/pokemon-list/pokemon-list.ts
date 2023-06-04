@@ -32,11 +32,11 @@ export default class PokemonList extends Vue {
         this.isLoading = true;
         axios.get(`https://pokeapi.co/api/v2/pokemon`)
             .then((res) => {
-                this.$store.dispatch('actionPokemons', res.data.results)
                 this.pokemonList = res.data.results.map((i: any) => {
                     let id = i.url.replace('https://pokeapi.co/api/v2/pokemon/', '').replace('/', '');
                     return { id, ...i }
                 })
+                this.$store.dispatch('actionPokemons', this.pokemonList)
                 this.isLoading = false;
             })
             .catch((e) => {

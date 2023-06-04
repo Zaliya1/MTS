@@ -15,14 +15,12 @@ const store: StoreOptions<RootState> = {
     },
     actions: {
         actionPokemons(context: any, pokemons: PokemonType[]) {
-            console.log('action')
             context.commit('mutatePokemons', pokemons)
         }
     },
     mutations: {
         mutatePokemons(state, pokemons: PokemonType[]) {
             state.pokemons = pokemons;
-            console.log(state.pokemons)
         },
     }
 }
