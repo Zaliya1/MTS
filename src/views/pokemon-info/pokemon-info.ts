@@ -1,6 +1,7 @@
 import {Component, Vue } from "vue-property-decorator";
-import axios from "axios";
+import {adapterPokemon} from "@/adapters";
 import {BCard, BCardText, BButton} from "bootstrap-vue";
+import infrastructure from "@/infrastructure";
 
 export type PokemonInfoType = {
     name: string;
@@ -30,19 +31,14 @@ export default class PokemonInfo extends Vue {
         this.getPokemon()
     }
 
-    getPokemon():void {
+    getPokemon() {
         this.isLoading = true;
-        axios.get(`https://pokeapi.co/api/v2/pokemon/${this.idPokemon}`)
+        infrastructure.getPokemon(this.idPokemon)
             .then((res) => {
-                this.pokemon = {
-                    name: res.data.name,
-                    height: res.data.height,
-                    weight: res.data.weight,
-                    img: res.data.sprites.front_default
-                };
+                this.pokemon = adapterPokemon(res);
                 this.isLoading = false;
             })
-            .catch((e) => {
+            .catch((e: any) => {
                 this.error = e;
                 this.isLoading = false;
             })
